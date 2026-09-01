@@ -10,7 +10,8 @@ class  Proyecto(models.Model):
     duracion = models.IntegerField() # campo entero
     imagen = models.ImageField(upload_to='img/', default='img/Logo.png')
 
-from django.db import models
+    def __str__(self):
+        return self.nombre
 
 class Tarea(models.Model):
     '''
@@ -38,6 +39,9 @@ class Tarea(models.Model):
     titulo=models.CharField(max_length=50)
     prioridad=models.CharField(max_length=5, choices=PRIODIDAD_CHOICES, default='MEDIA')
     estado=models.CharField(max_length=15, choices=ESATADO_CHOICES, default='PROCESO')
+
+    def __str__(self):
+            return self.titulo + "("+ self.proyecto.nombre +")"
 class Curso(models.Model):
     '''
     Modelo que representa un curso
